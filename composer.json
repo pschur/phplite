@@ -19,6 +19,9 @@
         "psr-4" : {
             "App\\" : "app/",
             "Phplite\\" : "system/src/"
-        }
+        },
+        "files" : [
+            "system/src/Helpers/helper.php"
+        ]
     }
 }
