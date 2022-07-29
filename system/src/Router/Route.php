@@ -18,14 +18,14 @@ class Route {
      *
      * @var string $middleware
      */
-    private static $middleware;
+    private static $middleware = "";
 
     /**
      * Prefix
      *
      * @var string $prefix
      */
-    private static $prefix;
+    private static $prefix = "";
 
     /**
      * Route constructor
