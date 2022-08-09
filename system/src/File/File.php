@@ -90,4 +90,27 @@ class File {
             }
         }
     }
+
+    /**
+     * check if path is dir
+     * 
+     * @param string $path
+     * @return bool
+     */
+    public static function dir(string $path){
+        return is_dir(static::path($path));
+    }
+
+    /**
+     * scan a dir
+     * 
+     * @param string $path
+     * @param string $search_rex = '*'
+     * @return array
+     */
+    public static function glob(string $path, string $search_rex = '*'){
+        if (static::exist($path) && static::dir($path)) {
+            return glob(static::path($path).'/'.$search_rex);
+        }
+    }
 }
