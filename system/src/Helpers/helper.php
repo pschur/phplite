@@ -99,7 +99,20 @@ if (! function_exists('dd')) {
  */
 if (! function_exists('session')) {
     function session($key) {
-        return Phplite\session\session::get($key);
+        return Phplite\Session\Session::get($key);
+    }
+}
+
+/**
+ * Get config data
+ *
+ * @param string $key
+ * @param mixed $default
+ * @return mixed
+ */
+if (! function_exists('config')) {
+    function config(string $key, mixed $default = null) {
+        return Phplite\Config\Config::get($key, $default);
     }
 }
 

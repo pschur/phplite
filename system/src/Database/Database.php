@@ -130,7 +130,7 @@ class Database {
      */
     private static function connect() {
         if (! static::$connection) {
-            $database_data = File::require_file('config/database.php');
+            $database_data = Config::get('database');
             extract($database_data);
             $dsn = 'mysql:dbname='.$database.';host='.$host.'';
             $options = [

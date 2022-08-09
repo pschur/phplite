@@ -2,6 +2,7 @@
 
 namespace Phplite\Bootstrap;
 
+use Phplite\Config\Config;
 use Phplite\DB\DB;
 use Phplite\Exceptions\Whoops;
 use Phplite\File\File;
@@ -27,6 +28,7 @@ class App {
         // Register whoops
         Whoops::handle();
 
+        Config::init();
         self::db_setup();
 
         // Start session
@@ -48,7 +50,7 @@ class App {
     private static function db_setup(){
         $db = new DB();
 
-        $db->addConnection(File::require_file('config/database.php'));
+        $db->addConnection(Config::get('database'));
         $db->setAsGlobal();
         $db->bootEloquent();
     }
