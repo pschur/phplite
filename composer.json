@@ -13,7 +13,8 @@
     "require": {
         "filp/whoops": "^2.14",
         "jenssegers/blade": "^1.4",
-        "rakit/validation": "^1.4"
+        "rakit/validation": "^1.4",
+        "illuminate/database": "*"
     },
     "autoload" : {
         "psr-4" : {

@@ -2,6 +2,7 @@
 
 namespace Phplite\Bootstrap;
 
+use Phplite\DB\DB;
 use Phplite\Exceptions\Whoops;
 use Phplite\File\File;
 use Phplite\Http\Request;
@@ -26,6 +27,8 @@ class App {
         // Register whoops
         Whoops::handle();
 
+        self::db_setup();
+
         // Start session
         Session::start();
 
@@ -40,5 +43,13 @@ class App {
 
         // Output the response
         Response::output($data);
+    }
+
+    private static function db_setup(){
+        $db = new DB();
+
+        $db->addConnection(File::require_file('config/database.php'));
+        $db->setAsGlobal();
+        $db->bootEloquent();
     }
 }
