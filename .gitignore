@@ -2,5 +2,6 @@
 /vendor
 /.idea
 /.vscode
+/storage/cache/*.php
 
 ./composer.lock
