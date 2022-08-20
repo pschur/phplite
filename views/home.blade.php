@@ -10,7 +10,7 @@
  * 
  * <i>@var string</i>
  */</b>
-<u>'name'</u> => <u>'<del>PHPLite</del> <ins>[YOUR-APPLICATION-NAME]</ins>'</u>, <em><cite>// Here you can set your own application name.</cite></em></code></pre>
+<u>'name'</u> => <u>'<del>{{ config('app.name', 'PHPLite') }}</del> <ins>[YOUR-APPLICATION-NAME]</ins>'</u>, <em><cite>// Here you can set your own application name.</cite></em></code></pre>
         </footer>
     </article>
 @endsection
