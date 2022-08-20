@@ -12,7 +12,7 @@
         @yield('content')
 
         <footer class="container">
-            <small>Built with <a href="https://picocss.com">Pico.css</a></small>
+            <small>Frontend with <a href="https://picocss.com">Pico.css</a></small>
         </footer>
     </body>
 </html>
