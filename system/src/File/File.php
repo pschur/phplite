@@ -97,8 +97,18 @@ class File {
      * @param string $path
      * @return bool
      */
-    public static function dir(string $path){
+    public static function is_dir(string $path){
         return is_dir(static::path($path));
+    }
+
+    /**
+     * check if path is file
+     * 
+     * @param string $path
+     * @return bool
+     */
+    public static function is_file(string $path){
+        return is_file(static::path($path));
     }
 
     /**
@@ -106,11 +116,11 @@ class File {
      * 
      * @param string $path
      * @param string $search_rex = '*'
-     * @return array
+     * @return \Phplite\File\FileCollection
      */
     public static function glob(string $path, string $search_rex = '*'){
-        if (static::exist($path) && static::dir($path)) {
-            return glob(static::path($path).'/'.$search_rex);
+        if (static::exist($path) && static::is_dir($path)) {
+            return new FileCollection(glob(static::path($path).'/'.$search_rex));
         }
     }
 }
