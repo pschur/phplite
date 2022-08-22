@@ -2,14 +2,14 @@
 
 namespace Phplite\Bootstrap;
 
-use Phplite\Config\Config;
 use Phplite\DB\DB;
-use Phplite\Exceptions\Whoops;
 use Phplite\File\File;
 use Phplite\Http\Request;
-use Phplite\Http\Response;
 use Phplite\Router\Route;
+use Phplite\Config\Config;
+use Phplite\Http\Response;
 use Phplite\Session\Session;
+use Phplite\Exceptions\Whoops;
 
 class App {
     /**
@@ -18,6 +18,8 @@ class App {
      * @return void
      */
     private function __construct() {}
+
+    public static $db;
 
     /**
      * Run the application
@@ -48,10 +50,10 @@ class App {
     }
 
     private static function db_setup(){
-        $db = new DB();
+        self::$db = new DB();
 
-        $db->addConnection(Config::get('database'));
-        $db->setAsGlobal();
-        $db->bootEloquent();
+        self::$db->addConnection(Config::get('database'));
+        self::$db->setAsGlobal();
+        self::$db->bootEloquent();
     }
 }
