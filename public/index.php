@@ -6,6 +6,8 @@
  * @author Ayman Elmalah aymanelmalah77@gmail.com
  */
 
+use Phplite\Bootstrap\App;
+
 /*
 |---------------------------------------------------
 | Register the autoloader
@@ -32,5 +34,6 @@ require __DIR__.'/../bootstrap/app.php';
 | Handle the request and send response
 */
 Application::run();
+App::web();
 
 

@@ -32,7 +32,9 @@ class App {
 
         Config::init();
         self::db_setup();
+    }
 
+    public static function web(){
         // Start session
         Session::start();
 
