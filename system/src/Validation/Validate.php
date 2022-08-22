@@ -17,12 +17,23 @@ class Validate {
     /**
      * Validate request
      *
+     * @deprecated
      * @param array $rules
      * @param bool $json
-     *
      * @return mixed
      */
-    public static function validate(Array $rules, $json) {
+    public static function validate(array $rules, bool $json = false) {
+        return self::make($rules, $json);
+    }
+
+    /**
+     * Validate request
+     *
+     * @param array $rules
+     * @param bool $json
+     * @return mixed
+     */
+    public static function make(array $rules, bool $json = false){
         $validator = new Validator;
 
         $validator->addValidator('unique', new UniqueRule());
