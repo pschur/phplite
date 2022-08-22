@@ -434,6 +434,16 @@ class Database {
     }
 
     /**
+     * Find id
+     * 
+     * @param int $id
+     * @return object $result
+     */
+    public static function find(int $id){
+        return self::where('id', '=', $id)->first();
+    }
+
+    /**
      * Execute
      *
      * @param array $data
