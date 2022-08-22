@@ -6,6 +6,7 @@ use Phplite\File\File;
 use PDO;
 use PDOException;
 use Exception;
+use Phplite\Config\Config;
 use Phplite\Http\Request;
 use Phplite\Url\Url;
 
@@ -130,9 +131,10 @@ class Database {
      */
     private static function connect() {
         if (! static::$connection) {
-            $database_data = Config::get('database');
-            extract($database_data);
+            extract(Config::get('database'));
+
             $dsn = 'mysql:dbname='.$database.';host='.$host.'';
+
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
@@ -165,7 +167,7 @@ class Database {
      * query function
      *
      * @param string $query
-     * @return string
+     * @return object
      */
     public static function query($query = null) {
         static::instance();
@@ -289,7 +291,7 @@ class Database {
         }
 
         static::$where .= $statement;
-        static::$where_binding[] = htmlspecialchars($value);
+        static::$where_binding[] = htmlspecialchars($value ?? "");
 
         return static::instance();
     }
@@ -448,7 +450,7 @@ class Database {
 
         foreach($data as $key => $value) {
             static::$setter .= '`' . $key . '` = ?, ';
-            static::$binding[] = filter_var($value, FILTER_SANITIZE_STRING);
+            static::$binding[] = htmlspecialchars($value);
         }
         static::$setter = trim(static::$setter, ', ');
 
