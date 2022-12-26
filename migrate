@@ -1,0 +1,41 @@
+<?php
+
+/*
+|---------------------------------------------------
+| Register the autoloader
+|---------------------------------------------------
+|
+| Load the autoloader that will generated class that will be used
+*/
+
+use Phplite\File\File;
+use Phplite\Resources\Resource;
+
+require __DIR__.'/vendor/autoload.php';
+
+/*
+|---------------------------------------------------
+| Bootstrap the application
+|---------------------------------------------------
+|
+| Bootstrap the application and do action from framework
+*/
+require __DIR__.'/bootstrap/app.php';
+
+Application::run();
+
+echo "Starting Migration: \n\n";
+
+$resources = File::glob('app/Resources');
+$resources->each(function($key, $value, $returner){
+    $value = str_replace([File::path(''), '/', '\\'], '\\', $value);
+    $value = str_replace('.php', '', $value);
+    $value = str_replace('app', 'App', $value);
+
+    return $returner($key, $value);
+});
+
+foreach ($resources as $resource) {
+    Resource::migrate(new $resource);
+}
+echo "OK! \n";
